@@ -1,0 +1,15 @@
+.single-rating-segment {
+  clear: both;
+  overflow: hidden;
+}
+.woocommerce .single-rating-segment .star-rating {
+  float: left;
+}
+.woocommerce .single-rating-segment label {
+  display: inline-block;
+  float: left;
+  width: 128px;
+}
+input[type=range]{
+  border: 0px;
+}
