@@ -12,7 +12,7 @@
 if( ! defined( 'ABSPATH' ) ) exit();
 
 global $wrr_pro;
-$wrr_pro = 'http://medhabi.com';
+$wrr_pro = 'http://medhabi.com/product/wc-rich-reviews';
 
 /**
  * @package WooCommerce
@@ -48,18 +48,18 @@ class WC_Rich_Reviews_Lite {
 
 	public function __construct(){
 		add_action( 'init', array( $this, 'define' ) );
-		add_filter( 'WooCommerce_product_review_comment_form_args', array( $this, 'review_form' ), 99 );
+		add_filter( 'woocommerce_product_review_comment_form_args', array( $this, 'review_form' ), 99 );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 		add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), array($this, 'add_action_links') );
 		add_filter( 'admin_notices', array($this, 'admin_notice') );
-		if( get_option( 'WooCommerce_enable_review_rating' ) === 'yes' ) $this->rating_hooks();
+		if( get_option( 'woocommerce_enable_review_rating' ) === 'yes' ) $this->rating_hooks();
 	}
 
 	public function rating_hooks()	{
 		add_action( 'plugins_loaded', array( $this, 'copy_template' ) );
 		add_action( 'comment_post', array( $this, 'store_fields' ), 99 );
-		add_action( 'WooCommerce_review_before_comment_text', array( $this, 'show_fields' ) );
-		add_action( 'WooCommerce_single_product_summary', array( $this, 'show_segmented_ratings' ) );
+		add_action( 'woocommerce_review_before_comment_text', array( $this, 'show_fields' ) );
+		add_action( 'woocommerce_single_product_summary', array( $this, 'show_segmented_ratings' ) );
 	}
 
 	/**
@@ -112,7 +112,7 @@ class WC_Rich_Reviews_Lite {
 		$comment_form['comment_field'] = '<input type="hidden" name="rating" id="overall-rating">';
 
 		// segmented ratings
-		if( get_option( 'WooCommerce_enable_review_rating' ) === 'yes' ){
+		if( get_option( 'woocommerce_enable_review_rating' ) === 'yes' ){
 			if( $this->is_segmented_rating ){
 				foreach ( $this->get_params( $post->ID ) as $key=>$label ) {
 

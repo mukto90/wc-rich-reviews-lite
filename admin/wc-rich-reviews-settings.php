@@ -25,7 +25,7 @@ class WC_Rich_Reviews_settings {
     }
 
     function admin_menu() {
-        add_submenu_page('WooCommerce', 'WC Rich Reviews Settings', 'Rich Reviews', 'manage_options', 'wc-rich-reviews-settings', array($this, 'option_page') );
+        add_submenu_page('woocommerce', 'WC Rich Reviews Settings', 'Rich Reviews', 'manage_options', 'wc-rich-reviews-settings', array($this, 'option_page') );
     }
 
     function get_settings_sections() {
